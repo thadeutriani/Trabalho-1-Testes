@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using AutomatizaWebOrange.Steps;
 using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using System.Runtime.ConstrainedExecution;
+using System.ComponentModel.DataAnnotations;
+using OpenQA.Selenium;
 
 namespace AutomatizaWebOrange.Feature
 {
@@ -92,6 +94,68 @@ namespace AutomatizaWebOrange.Feature
             WriteLine("E: Receberá em seu e-mail a mensagem de recuperação de senha");
 
             LoginSteps.ValidarTrocaDeSenha("Admin");
+        }
+
+        [TestMethod]
+        [TestCategory("07")]
+        public void ValidarExibicaoDaTelaRecruitment()
+        {
+
+            WriteLine("Dado que: Acesse o site 'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login'");
+            WriteLine("E: Preencher os campos @UserName e @Password com usuário previamente cadastrado");
+            WriteLine("E: clicar no botão[Login]");
+            WriteLine("E: O login ser realizado com sucesso.");
+            WriteLine("E: Exibir a tela Dashboard");
+            WriteLine("E: Clicar no botão[Recruitment]");
+            WriteLine("Quando: exibir a tela 'Recruitment'");
+            WriteLine("Então: O Título 'Recruitment' deve ser exibido com sucesso");
+
+
+            DashboardSteps.ValidarExibicaoDaTelaRecruitment("Admin", "admin123");
+        }
+
+
+        [TestMethod]
+        [TestCategory("08")]
+        public void ValidarTelaCadastroCandidato()
+        {
+
+            WriteLine("Dado que: Acesse o site 'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login'");
+            WriteLine("E: Preencher os campos @UserName e @Password com usuário previamente cadastrado");
+            WriteLine("E: clicar no botão[Login]");
+            WriteLine("E: O login ser realizado com sucesso.");
+            WriteLine("E: Exibir a tela Dashboard");
+            WriteLine("E: Clicar no botão[Recruitment]");
+            WriteLine("E: exibir a tela 'Recruitment'");
+            WriteLine("Qaundo: Clicar no botão [ + Add]");
+            WriteLine("Então: Deve Exibir a tela de cadastro de candidatos");
+
+
+            RecruitmentSteps.ValidarTelaCadastroCandidato("Admin", "admin123");
+        }
+
+        [TestMethod]
+        [TestCategory("09")]
+        public void ValidarAdicionarCandidato()
+        {
+
+            WriteLine("Dado que: Acesse o site 'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login'");
+            WriteLine("E: Preencher os campos @UserName e @Password com usuário previamente cadastrado");
+            WriteLine("E: clicar no botão[Login]");
+            WriteLine("E: O login ser realizado com sucesso.");
+            WriteLine("E: Exibir a tela Dashboard");
+            WriteLine("E: Clicar no botão[Recruitment]");
+            WriteLine("E: exibir a tela 'Recruitment'");
+            WriteLine("E: Clicar no botão [+ Add]");
+            WriteLine("E: Exibir a tela de cadastro de candidatos");
+            WriteLine("E: prenncher os campos @FirstName,@MiddleName,@LastName, @Vacancy" +
+                ", @Email, @ContactNumber, @Keyword e @Notes com os dados do candidato");
+            WriteLine("Quando clicar no botão [Save]");
+            WriteLine("Então: Deve exibir a tela de aplicação do candidato");
+            
+
+            AddCandidatesSteps.ValidarAdicionarCandidato("Admin", "admin123", "José", "Silva", "Santos", "Junior Account Assistant",
+                "jose.santos@gmail.com", "32999555888", "Software Developer,C#,Python,Power BI, Data Analysis", "Vivência com teste de software");
         }
     }
 }

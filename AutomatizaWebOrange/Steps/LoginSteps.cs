@@ -107,5 +107,7 @@ namespace AutomatizaWebOrange.Steps
             string msgSendPasswordResetAtual = Convert.ToString(Driver.FindElement(SendPasswordResetPage.msgSendPasswordReset).Text);
             Assert.AreEqual("Reset Password link sent successfully", msgSendPasswordResetAtual, "Página carregada com sucesso!");
         }
+
+     
     }
 }
