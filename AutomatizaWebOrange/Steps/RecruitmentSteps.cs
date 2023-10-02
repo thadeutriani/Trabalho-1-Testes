@@ -22,7 +22,7 @@ namespace AutomatizaWebOrange.Steps
             string pgAddCandidatoAtual = Convert.ToString(Driver.Url);
             string pgAddCandidatoEsperdo = Convert.ToString("https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/addCandidate");
             Assert.AreEqual(pgAddCandidatoEsperdo, pgAddCandidatoAtual, "Página carregada com sucesso!");
-            
+
         }
     }
 }

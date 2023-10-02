@@ -108,6 +108,19 @@ namespace AutomatizaWebOrange.Steps
             Assert.AreEqual("Reset Password link sent successfully", msgSendPasswordResetAtual, "Página carregada com sucesso!");
         }
 
-     
+        public static void ValidarExibicaoDaTelaRecruitment(string Username, string Password)
+        {
+            Login(Username, Password);
+            WriteLine("Clicar no botão [Recruitment]");
+            Driver.FindElement(DashboardPage.btRecuitment).Click();
+            Thread.Sleep(5000);
+            WriteLine("Validar se está na tela Recritment");
+            string pgRecruitmentAtual = Convert.ToString(Driver.Url);
+            string pgRecruitmentEsperado = Convert.ToString("https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/viewCandidates");
+            Assert.AreEqual(pgRecruitmentEsperado, pgRecruitmentAtual, "Página carregada com sucesso!");
+        }
+
+       
+
     }
 }

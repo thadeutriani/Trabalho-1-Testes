@@ -10,10 +10,9 @@ using static System.Console;
 
 namespace AutomatizaWebOrange.Steps
 {
-    public class AddCandidatesSteps : Inicializacao
+    public class AddCandidateSteps : Inicializacao
     {
-        public static void ValidarAdicionarCandidato(string Username, string Password, string FirstName, string MiddleName, string LastName, string Vacancy,
-            string Email, string ContactNumber, string Keyword, string Notes)
+        public static void ValidarFirstNameObrigatorioNaTelaAddCandidato(string Username, string Password, string FirstName, string LastName, string Email)
         {
             LoginSteps.Login(Username, Password);
             WriteLine("Clicar no botão [Recruitment]");
@@ -21,26 +20,62 @@ namespace AutomatizaWebOrange.Steps
             Thread.Sleep(5000);
             WriteLine("Clicar no botão [+ Add]");
             Driver.FindElement(RecruitmentPage.btAdd).Click();
-            WriteLine("Preencher o Primeiro nome");
+            WriteLine("Não preencher o Primeiro nome");
             Driver.FindElement(AddCandidatePage.FirstName).SendKeys(FirstName);
-            WriteLine("Preencher o nome do meio");
-            Driver.FindElement(AddCandidatePage.MiddleName).SendKeys(MiddleName);
             WriteLine("Preencher o Último nome");
             Driver.FindElement(AddCandidatePage.LastName).SendKeys(LastName);
-            WriteLine("Selecionar a Vaga");
-            Driver.FindElement(AddCandidatePage.Vacancy).Click();
-
-
-            Driver.(By.XPath($"//*[text() = '{Vacancy}']")));
-            // Parei akiiiiii
+            WriteLine("Preencher o Email");
+            Driver.FindElement(AddCandidatePage.Email).SendKeys(Email);
             Thread.Sleep(5000);
             WriteLine("Clicar no botão [Save]");
             Driver.FindElement(AddCandidatePage.Save).Click();
-            WriteLine("Validar se está na tela de aplicação do candidato");
-            string CandidateApplicationStagePageAtual = Convert.ToString(Driver.FindElement(CandidateApplicationStagePage.pgCandidateApplicationStage).Text);
-            string CandidateApplicationStagePageEsperdo = Convert.ToString("Application Stage");
-            Assert.AreEqual(CandidateApplicationStagePageEsperdo, CandidateApplicationStagePageAtual, "Página carregada com sucesso!");
+            WriteLine("Campo obrigatório FirstName validado com sucesso");
+            string FirstNameObrigatorio = Convert.ToString(Driver.FindElement(LoginPage.CampoObrigatorio).Text);
+            Assert.AreEqual("Required", FirstNameObrigatorio, "Campo obrigatório FirstName validado com sucesso");
+        }
 
+        public static void ValidarLastNameObrigatorioNaTelaAddCandidato(string Username, string Password, string FirstName, string LastName, string Email)
+        {
+            LoginSteps.Login(Username, Password);
+            WriteLine("Clicar no botão [Recruitment]");
+            Driver.FindElement(DashboardPage.btRecuitment).Click();
+            Thread.Sleep(5000);
+            WriteLine("Clicar no botão [+ Add]");
+            Driver.FindElement(RecruitmentPage.btAdd).Click();
+            WriteLine("Não preencher o Primeiro nome");
+            Driver.FindElement(AddCandidatePage.FirstName).SendKeys(FirstName);
+            WriteLine("Preencher o Último nome");
+            Driver.FindElement(AddCandidatePage.LastName).SendKeys(LastName);
+            WriteLine("Preencher o Email");
+            Driver.FindElement(AddCandidatePage.Email).SendKeys(Email);
+            Thread.Sleep(5000);
+            WriteLine("Clicar no botão [Save]");
+            Driver.FindElement(AddCandidatePage.Save).Click();
+            WriteLine("Campo obrigatório LastName validado com sucesso");
+            string LastNameObrigatorio = Convert.ToString(Driver.FindElement(LoginPage.CampoObrigatorio).Text);
+            Assert.AreEqual("Required", LastNameObrigatorio, "Campo obrigatório LastName validado com sucesso");
+        }
+
+        public static void ValidarEmailObrigatorioNaTelaAddCandidato(string Username, string Password, string FirstName, string LastName, string Email)
+        {
+            LoginSteps.Login(Username, Password);
+            WriteLine("Clicar no botão [Recruitment]");
+            Driver.FindElement(DashboardPage.btRecuitment).Click();
+            Thread.Sleep(5000);
+            WriteLine("Clicar no botão [+ Add]");
+            Driver.FindElement(RecruitmentPage.btAdd).Click();
+            WriteLine("Não preencher o Primeiro nome");
+            Driver.FindElement(AddCandidatePage.FirstName).SendKeys(FirstName);
+            WriteLine("Preencher o Último nome");
+            Driver.FindElement(AddCandidatePage.LastName).SendKeys(LastName);
+            WriteLine("Preencher o Email");
+            Driver.FindElement(AddCandidatePage.Email).SendKeys(Email);
+            Thread.Sleep(5000);
+            WriteLine("Clicar no botão [Save]");
+            Driver.FindElement(AddCandidatePage.Save).Click();
+            WriteLine("Campo obrigatório Email validado com sucesso");
+            string EmailObrigatorio = Convert.ToString(Driver.FindElement(LoginPage.CampoObrigatorio).Text);
+            Assert.AreEqual("Required", EmailObrigatorio, "Campo obrigatório Email validado com sucesso");
         }
     }
 }

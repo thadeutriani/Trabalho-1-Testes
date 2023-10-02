@@ -28,8 +28,4 @@
     <PackageReference Include="Selenium.WebDriver" Version="4.12.4" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Feature\" />
-  </ItemGroup>
-
 </Project>
